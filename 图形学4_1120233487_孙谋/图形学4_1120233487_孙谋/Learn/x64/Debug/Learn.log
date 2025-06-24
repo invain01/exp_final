@@ -1,0 +1,518 @@
+﻿  stdafx.cpp
+  CEuler.cpp
+  CMatrix.cpp
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.h(80,20): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(140,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(141,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(230,35): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(33,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(34,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(35,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(43,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(44,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(45,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(46,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(47,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(48,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(142,28): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(143,16): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(155,28): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(161,29): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(167,24): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(168,23): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(169,24): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(243,21): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(244,28): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(253,20): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(254,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(268,20): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(309,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(315,36): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(10,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(11,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(12,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(13,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(14,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(15,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(26,14): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(29,12): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(42,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(43,18): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(47,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(48,18): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(49,18): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(54,20): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(55,20): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(56,20): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(67,11): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(75,12): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(82,12): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(89,12): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.cpp(336,10): warning C4101: “t”: 未引用的局部变量
+  (编译源文件“/CEuler.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.h(80,20): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CMatrix.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(140,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CMatrix.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(141,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CMatrix.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(230,35): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CMatrix.cpp”)
+  
+  CVector.cpp
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.h(80,20): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/CVector.cpp”)
+  
+  Learn.cpp
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.cpp(45,26): warning C4473: “fscanf_s”: 没有为格式字符串传递足够的参数
+  (编译源文件“/CVector.cpp”)
+      C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.cpp(45,26):
+      占位符和其参数预计 6 可变参数，但提供的却是 3 参数
+      C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.cpp(45,26):
+      缺失的可变参数 4 为格式字符串“%f”所需
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CVector.h(80,20): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(140,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(141,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CMatrix.h(230,35): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(33,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(34,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(35,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(43,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(44,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(45,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(46,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(47,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(48,18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(142,28): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(143,16): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(155,28): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(161,29): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(167,24): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(168,23): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(169,24): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(243,21): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(244,28): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(253,20): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(254,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(268,20): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(309,22): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\CEuler.h(315,36): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(18,14): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(18,30): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(63,10): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(82,49): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(87,72): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(87,67): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(87,62): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(88,74): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(88,69): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(88,64): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(89,73): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(89,68): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(89,63): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(90,74): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(90,69): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(90,64): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(91,75): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(91,70): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(91,65): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(92,74): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(92,69): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(92,64): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(93,75): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(93,70): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(93,65): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(87,39): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(87,45): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(88,39): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(88,46): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(89,39): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(89,46): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(90,39): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(90,46): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(91,40): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(91,47): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(92,39): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(92,46): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(93,40): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(93,47): warning C4305: “初始化”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(122,16): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(120,16): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(165,15): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(191,13): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(199,58): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(199,22): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(200,64): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(200,22): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(202,65): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(202,22): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(203,59): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(203,22): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(211,57): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(211,21): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(218,58): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(218,21): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(235,38): warning C4244: “参数”: 从“float”转换到“GLint”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(235,22): warning C4244: “参数”: 从“float”转换到“GLint”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(249,37): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(281,15): warning C4305: “参数”: 从“double”到“GLfloat”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(283,20): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(289,15): warning C4305: “参数”: 从“double”到“GLfloat”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(291,20): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(298,20): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(305,20): warning C4305: “参数”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(334,25): warning C4305: “参数”: 从“double”到“GLfloat”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(352,24): warning C4305: “参数”: 从“double”到“GLfloat”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(382,63): warning C4305: “+=”: 从“double”到“float”截断
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(383,87): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(383,47): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(392,36): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(390,36): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(483,66): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(484,66): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(510,66): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(511,66): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(761,26): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(787,24): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(786,24): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(785,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(795,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(794,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(793,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(804,26): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(803,26): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(802,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(1092,70): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(1092,52): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\Learn\Learn.cpp(1092,34): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+  (编译源文件“/Learn.cpp”)
+  
+  正在生成代码...
+  Learn.vcxproj -> C:\Users\invain\Desktop\图形学4_1120233487_孙谋\图形学4_1120233487_孙谋\run\Learn.exe
