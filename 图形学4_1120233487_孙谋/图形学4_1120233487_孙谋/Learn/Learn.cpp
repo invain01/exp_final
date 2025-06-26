@@ -1,31 +1,36 @@
 
 #include "stdafx.h"
-#include "glut.h"
 #include "math.h"
 #include "CVector.h"
 #include "CMatrix.h"
 #include <ctime>
 #include <vector>
+#include <atlimage.h>
 #include <algorithm> 
 #include "CEuler.h"
-bool keyState[256] = { false }; // ³õÊ¼»¯ËùÓĞ¼üµÄ×´Ì¬ÎªÎ´°´ÏÂ
-bool isAstronautView = false; // µ±Ç°ÊÇ·ñÎªÌ«¿ÕÈËÊÓ½Ç
-// ÊÓµãÎ»ÖÃºÍ·½Ïò
-float mx = 0, my = 5, mz = 10, rx = -0.25, ry = 0, rz = 0; // Æ½ÒÆºÍĞı×ª
+#include "glew.h"
+#include "glut.h"
+#include <atlconv.h>
+
+GLuint texture[1] = { 0 };
+bool keyState[256] = { false }; // åˆå§‹åŒ–æ‰€æœ‰é”®çš„çŠ¶æ€ä¸ºæœªæŒ‰ä¸‹
+bool isAstronautView = false; // å½“å‰æ˜¯å¦ä¸ºå¤ªç©ºäººè§†è§’
+// è§†ç‚¹ä½ç½®å’Œæ–¹å‘
+float mx = 0, my = 5, mz = 10, rx = -0.25, ry = 0, rz = 0; // å¹³ç§»å’Œæ—‹è½¬
 float godView_mx = 0, godView_my = 5, godView_mz = 10;
 float godView_rx = -0.25, godView_ry = 0, godView_rz = 0;
-float sx = 1, sy = 1, sz = 1; // Ëõ·Å
+float sx = 1, sy = 1, sz = 1; // ç¼©æ”¾
 float mspeed = 0.003, rspeed = 0.02;
 float g_IEyeMat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 }, g_EyeMat[16] = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
-int mode = 1; // 0: ¾ØÕóÄ£Ê½£¬1: Ö±½ÓÄ£Ê½
-bool isInterpolating = false; // ÊÇ·ñÕıÔÚ½øĞĞ²åÖµ
-int interpolationFrame = 0; // µ±Ç°²åÖµÖ¡Êı
-const int interpolationTotalFrames = 300; // ×Ü²åÖµÖ¡Êı
-CVector initialPosition, targetPosition; // ³õÊ¼ºÍÄ¿±êÊÓµãÎ»ÖÃ
-float initialRx, initialRy, initialRz; // ³õÊ¼Ğı×ª½Ç¶È
-float targetRx, targetRy, targetRz; // Ä¿±êĞı×ª½Ç¶È
-CQuaternion initialQuat, targetQuat; // ³õÊ¼ºÍÄ¿±êËÄÔªÊı
-CQuaternion currentQuat;            // µ±Ç°ËÄÔªÊı
+int mode = 1; // 0: çŸ©é˜µæ¨¡å¼ï¼Œ1: ç›´æ¥æ¨¡å¼
+bool isInterpolating = false; // æ˜¯å¦æ­£åœ¨è¿›è¡Œæ’å€¼
+int interpolationFrame = 0; // å½“å‰æ’å€¼å¸§æ•°
+const int interpolationTotalFrames = 300; // æ€»æ’å€¼å¸§æ•°
+CVector initialPosition, targetPosition; // åˆå§‹å’Œç›®æ ‡è§†ç‚¹ä½ç½®
+float initialRx, initialRy, initialRz; // åˆå§‹æ—‹è½¬è§’åº¦
+float targetRx, targetRy, targetRz; // ç›®æ ‡æ—‹è½¬è§’åº¦
+CQuaternion initialQuat, targetQuat; // åˆå§‹å’Œç›®æ ‡å››å…ƒæ•°
+CQuaternion currentQuat;            // å½“å‰å››å…ƒæ•°
 
 template <typename T>
 T clamp(T value, T min, T max) {
@@ -41,17 +46,17 @@ T clamp(T value, T min, T max) {
 }
 
 struct Astronaut {
-	CVector position; // Ì«¿ÕÈËÎ»ÖÃ
-	float angle; // Ì«¿ÕÈËµÄĞı×ª½Ç¶È
-	float step; // Ì«¿ÕÈËµÄĞĞ×ß²½Êı
+	CVector position; // å¤ªç©ºäººä½ç½®
+	float angle; // å¤ªç©ºäººçš„æ—‹è½¬è§’åº¦
+	float step; // å¤ªç©ºäººçš„è¡Œèµ°æ­¥æ•°
 };
 Astronaut astronaut = { CVector(0, 0, 0), 0, 0 };
-CVector v; // ÇòµÄËÙ¶ÈÏòÁ¿
-CVector stars[100]; // ĞÇĞÇµÄÎ»ÖÃ
+CVector v; // çƒçš„é€Ÿåº¦å‘é‡
+CVector stars[100]; // æ˜Ÿæ˜Ÿçš„ä½ç½®
 CVector points[30][60];
-CVector pos;//ÇòµÄÎ»ÖÃ
-float starBrightness[100]; // ĞÇĞÇµÄÁÁ¶È
-float t = 0; // Ê±¼ä±äÁ¿£¬ÓÃÓÚ¿ØÖÆĞÇĞÇÁÁ¶È±ä»¯
+CVector pos;//çƒçš„ä½ç½®
+float starBrightness[100]; // æ˜Ÿæ˜Ÿçš„äº®åº¦
+float t = 0; // æ—¶é—´å˜é‡ï¼Œç”¨äºæ§åˆ¶æ˜Ÿæ˜Ÿäº®åº¦å˜åŒ–
 void myDisplay(void);
 void DrawStars();
 void myKeyboard();
@@ -59,41 +64,42 @@ void DrawPlanets();
 void DrawShip();
 void DrawText(const char* text, float x, float y, float z, void* font);
 void rotateConeToDirection(float vx, float vy, float vz);
-float seta = 0;//×Ô×ªËÙ¶È
-float sp = 0.02;//ËÙ¶È´óĞ¡
+float seta = 0;//è‡ªè½¬é€Ÿåº¦
+float sp = 0.02;//é€Ÿåº¦å¤§å°
 struct Planet {
-    CVector position; // ĞĞĞÇÎ»ÖÃ
-    float radius; // ĞĞĞÇ°ë¾¶
-    float orbitRadius; // ¹«×ª¹ìµÀ°ë¾¶
-    float orbitSpeed; // ¹«×ªËÙ¶È
-    float rotationSpeed; // ×Ô×ªËÙ¶È
-    float angle; // µ±Ç°½Ç¶È
-    CVector color; // ĞĞĞÇÑÕÉ«
+	CVector position;       // è¡Œæ˜Ÿä½ç½®
+	float radius;           // è¡Œæ˜ŸåŠå¾„
+	float orbitRadius;      // å…¬è½¬è½¨é“åŠå¾„
+	float orbitSpeed;       // å…¬è½¬é€Ÿåº¦
+	float rotationSpeed;    // è‡ªè½¬é€Ÿåº¦
+	float angle;            // å½“å‰è§’åº¦
+	CVector color;          // è¡Œæ˜Ÿé¢œè‰²ï¼ˆå¤‡ç”¨ï¼‰
+	GLuint textureID;       // è¡Œæ˜Ÿçº¹ç† IDï¼ˆæ–°å¢ï¼‰
 };
 
 struct Spaceship {
-    CVector position; // ·É´¬Î»ÖÃ
-    float angleX, angleY; // ·É´¬µÄĞı×ª½Ç¶È
-    float speed; // ·É´¬ËÙ¶È
-    CVector direction; // ·É´¬µÄÒÆ¶¯·½Ïò
-    int targetPlanet; // Ä¿±êĞĞĞÇµÄË÷Òı
+    CVector position; // é£èˆ¹ä½ç½®
+    float angleX, angleY; // é£èˆ¹çš„æ—‹è½¬è§’åº¦
+    float speed; // é£èˆ¹é€Ÿåº¦
+    CVector direction; // é£èˆ¹çš„ç§»åŠ¨æ–¹å‘
+    int targetPlanet; // ç›®æ ‡è¡Œæ˜Ÿçš„ç´¢å¼•
 };
 
 Spaceship spaceship = { CVector(0, 0, 0), 0, 0, 0.02, CVector(0, 0, 0), -1 };
 
-// È«¾Ö±äÁ¿
+// å…¨å±€å˜é‡
 std::vector<Planet> planets = {
-	{CVector(0, 0, 0), 0.5 * 5, 0, 0, 0, 0, CVector(1.0, 1.0, 0.0)}, // Ì«Ñô£¨»ÆÉ«£©
-	{CVector(0, 0, 0), 0.2 * 5, 1.5 * 5, 0.01, 0.02, 0, CVector(0.8, 0.8, 0.8)}, // Ë®ĞÇ£¨»ÒÉ«£©
-	{CVector(0, 0, 0), 0.3 * 5, 2.0 * 5, 0.008, 0.015, 0, CVector(0.7, 0.6, 0.2)}, // ½ğĞÇ£¨»ÆºÖÉ«£©
-	{CVector(0, 0, 0), 0.4 * 5, 2.5 * 5, 0.006, 0.01, 0, CVector(0.2, 0.2, 0.9)}, // µØÇò£¨À¶É«£©
-	{CVector(0, 0, 0), 0.1 * 5, 2.6 * 5, 0.007, 0.012, 0, CVector(0.8, 0.8, 0.8)}, // ÔÂÇò£¨»ÒÉ«£©
-	{CVector(0, 0, 0), 0.35 * 5, 3.0 * 5, 0.005, 0.008, 0, CVector(0.9, 0.2, 0.2)}, // »ğĞÇ£¨ºìÉ«£©
-	{CVector(0, 0, 0), 0.6 * 5, 4.0 * 5, 0.004, 0.006, 0, CVector(0.9, 0.9, 0.2)}, // Ä¾ĞÇ£¨Ç³»ÆÉ«£©
-	{CVector(0, 0, 0), 0.55 * 5, 5.0 * 5, 0.003, 0.005, 0, CVector(0.8, 0.6, 0.2)}, // ÍÁĞÇ£¨»ÆºÖÉ«£©
+	{CVector(0, 0, 0), 0.5 * 5, 0, 0, 0, 0, CVector(1.0, 1.0, 0.0),LoadGLTextureFromFile("8k_sun.jpg")}, // å¤ªé˜³ï¼ˆé»„è‰²ï¼‰
+	{CVector(0, 0, 0), 0.2 * 5, 1.5 * 5, 0.01, 0.02, 0, CVector(0.8, 0.8, 0.8),LoadGLTextureFromFile("8k_mercury.jpg")}, // æ°´æ˜Ÿï¼ˆç°è‰²ï¼‰
+	{CVector(0, 0, 0), 0.3 * 5, 2.0 * 5, 0.008, 0.015, 0, CVector(0.7, 0.6, 0.2),LoadGLTextureFromFile("8k_venus_surface.jpg")}, // é‡‘æ˜Ÿï¼ˆé»„è¤è‰²ï¼‰
+	{CVector(0, 0, 0), 0.4 * 5, 2.5 * 5, 0.006, 0.01, 0, CVector(0.2, 0.2, 0.9),LoadGLTextureFromFile("8k_earth_daymap.jpg")}, // åœ°çƒï¼ˆè“è‰²ï¼‰
+	{CVector(0, 0, 0), 0.1 * 5, 2.6 * 5, 0.007, 0.012, 0, CVector(0.8, 0.8, 0.8),LoadGLTextureFromFile("8k_moon.jpg")}, // æœˆçƒï¼ˆç°è‰²ï¼‰
+	{CVector(0, 0, 0), 0.35 * 5, 3.0 * 5, 0.005, 0.008, 0, CVector(0.9, 0.2, 0.2),LoadGLTextureFromFile("8k_mars.jpg")}, // ç«æ˜Ÿï¼ˆçº¢è‰²ï¼‰
+	{CVector(0, 0, 0), 0.6 * 5, 4.0 * 5, 0.004, 0.006, 0, CVector(0.9, 0.9, 0.2),LoadGLTextureFromFile("8k_jupiter.jpg")}, // æœ¨æ˜Ÿï¼ˆæµ…é»„è‰²ï¼‰
+	{CVector(0, 0, 0), 0.55 * 5, 5.0 * 5, 0.003, 0.005, 0, CVector(0.8, 0.6, 0.2),LoadGLTextureFromFile("8k_saturn.jpg")}, // åœŸæ˜Ÿï¼ˆé»„è¤è‰²ï¼‰
 };
-int selectedPlanet = -1; // µ±Ç°Ñ¡ÖĞµÄĞĞĞÇ
-bool wireframeMode = false; // ÊÇ·ñÎªÏß¿òÄ£Ê½
+int selectedPlanet = -1; // å½“å‰é€‰ä¸­çš„è¡Œæ˜Ÿ
+bool wireframeMode = false; // æ˜¯å¦ä¸ºçº¿æ¡†æ¨¡å¼
 void myTimerFunc(int val)
 {
     t += 0.033f;
@@ -102,20 +108,20 @@ void myTimerFunc(int val)
         planets[i].angle += planets[i].orbitSpeed;
     }
     if (spaceship.targetPlanet != -1) {
-        // ¼ÆËã·É´¬µ½Ä¿±êĞĞĞÇµÄ¾àÀë
+        // è®¡ç®—é£èˆ¹åˆ°ç›®æ ‡è¡Œæ˜Ÿçš„è·ç¦»
         float distance = (planets[spaceship.targetPlanet].position - spaceship.position).len();
         if (distance > spaceship.speed) {
-            // ÑØ·½ÏòÏòÁ¿ÒÆ¶¯·É´¬
+            // æ²¿æ–¹å‘å‘é‡ç§»åŠ¨é£èˆ¹
             spaceship.position = spaceship.position + spaceship.direction * spaceship.speed;
         }
         else {
-            // Èç¹û¾àÀëĞ¡ÓÚËÙ¶È£¬Ö±½Óµ½´ïÄ¿±êÎ»ÖÃ
+            // å¦‚æœè·ç¦»å°äºé€Ÿåº¦ï¼Œç›´æ¥åˆ°è¾¾ç›®æ ‡ä½ç½®
             spaceship.position = planets[spaceship.targetPlanet].position;
-            spaceship.targetPlanet = -1; // ÖØÖÃÄ¿±êĞĞĞÇ
+            spaceship.targetPlanet = -1; // é‡ç½®ç›®æ ‡è¡Œæ˜Ÿ
         }
     }
     else {
-        // Èç¹ûÃ»ÓĞÄ¿±êĞĞĞÇ£¬°´µ±Ç°·½ÏòÒÆ¶¯
+        // å¦‚æœæ²¡æœ‰ç›®æ ‡è¡Œæ˜Ÿï¼ŒæŒ‰å½“å‰æ–¹å‘ç§»åŠ¨
         CVector direction = CVector(
             sin(spaceship.angleY * 3.1415 / 180.0),
             0,
@@ -124,13 +130,13 @@ void myTimerFunc(int val)
         direction.Normalize();
         spaceship.position = spaceship.position + direction * spaceship.speed;
     }
-	// ¸üĞÂÓîº½Ô±ÊÓÍ¼ÏÂµÄÊÓµãÎ»ÖÃ
-	// ¸üĞÂÓîº½Ô±ÊÓÍ¼ÏÂµÄÊÓµãÎ»ÖÃ
+	// æ›´æ–°å®‡èˆªå‘˜è§†å›¾ä¸‹çš„è§†ç‚¹ä½ç½®
+	// æ›´æ–°å®‡èˆªå‘˜è§†å›¾ä¸‹çš„è§†ç‚¹ä½ç½®
 	if (isAstronautView) {
-		mx = spaceship.position.x; // ÉãÏñÍ·Î»ÓÚ·É´¬ÄÚ²¿
-		my = spaceship.position.y + 0.5f; // ÊÓµãÉÔÎ¢¸ßÓÚ·É´¬µ×²¿
-		mz = spaceship.position.z - 1.0f; // ÊÓµãÎ»ÓÚ·É´¬ºó·½Ò»¶¨¾àÀë
-		ry = spaceship.angleY; // ÊÓµã·½ÏòÓë·É´¬·½ÏòÒ»ÖÂ
+		mx = spaceship.position.x; // æ‘„åƒå¤´ä½äºé£èˆ¹å†…éƒ¨
+		my = spaceship.position.y + 0.5f; // è§†ç‚¹ç¨å¾®é«˜äºé£èˆ¹åº•éƒ¨
+		mz = spaceship.position.z - 1.0f; // è§†ç‚¹ä½äºé£èˆ¹åæ–¹ä¸€å®šè·ç¦»
+		ry = spaceship.angleY; // è§†ç‚¹æ–¹å‘ä¸é£èˆ¹æ–¹å‘ä¸€è‡´
 	}
     myDisplay();
     glutTimerFunc(33, myTimerFunc, 0);
@@ -155,27 +161,27 @@ bool rayIntersectsSphere(const CVector& rayOrigin, const CVector& rayDirection, 
     CVector L = sphereCenter - rayOrigin;
     float tca = -L.dotMul(rayDirection);
     //printf("tca=%f\n", tca);
-    if (tca < 0) return false; // ÉäÏß·½ÏòÓëÇòĞÄ·½ÏòÏà·´£¬ÎŞ½»µã
+    if (tca < 0) return false; // å°„çº¿æ–¹å‘ä¸çƒå¿ƒæ–¹å‘ç›¸åï¼Œæ— äº¤ç‚¹
 
     float d2 = L.dotMul(L) - tca * tca;
     float r2 = sphereRadius * sphereRadius;
     //printf("d2=%f,r2=%f\n",d2, r2);
-    if (d2 > r2) return false; // ÉäÏßÓëÇòÌå²»Ïà½»
+    if (d2 > r2) return false; // å°„çº¿ä¸çƒä½“ä¸ç›¸äº¤
 
     float thc = sqrt(r2 - d2);
-    t = tca - thc; // ×î½üµÄ½»µã
+    t = tca - thc; // æœ€è¿‘çš„äº¤ç‚¹
     return true;
 }
 void SetView() {
 	if (isAstronautView) {
-		// Ì«¿ÕÈËÊÓ½Ç
+		// å¤ªç©ºäººè§†è§’
 		glTranslatef(-mx, -my, -mz);
 		glRotatef(-rz, 0, 0, 1);
 		glRotatef(-rx, 1, 0, 0);
 		glRotatef(-ry, 0, 1, 0);
 	}
 	else {
-		// ÉÏµÛÊÓ½Ç
+		// ä¸Šå¸è§†è§’
 		if (mode == 0) {
 			glLoadMatrixf(g_EyeMat);
 		}
@@ -188,31 +194,31 @@ void SetView() {
 	}
 }
 void glutSolidCylinder(float radius, float height, int slices, int stacks) {
-	float step = 2 * PI / slices; // Ã¿¸öÇĞÆ¬µÄ½Ç¶È
-	float halfHeight = height / 2.0f; // Ô²ÖùÌåµÄÒ»°ë¸ß¶È
+	float step = 2 * PI / slices; // æ¯ä¸ªåˆ‡ç‰‡çš„è§’åº¦
+	float halfHeight = height / 2.0f; // åœ†æŸ±ä½“çš„ä¸€åŠé«˜åº¦
 
-	// »æÖÆÔ²ÖùÌåµÄ²àÃæ
+	// ç»˜åˆ¶åœ†æŸ±ä½“çš„ä¾§é¢
 	for (int i = 0; i < slices; ++i) {
 		glBegin(GL_QUADS);
 		{
-			// ÉÏÔ²
+			// ä¸Šåœ†
 			glVertex3f(radius * cos(i * step), halfHeight, radius * sin(i * step));
 			glVertex3f(radius * cos((i + 1) * step), halfHeight, radius * sin((i + 1) * step));
-			// ÏÂÔ²
+			// ä¸‹åœ†
 			glVertex3f(radius * cos((i + 1) * step), -halfHeight, radius * sin((i + 1) * step));
 			glVertex3f(radius * cos(i * step), -halfHeight, radius * sin(i * step));
 		}
 		glEnd();
 	}
 
-	// »æÖÆÔ²ÖùÌåµÄ¶¥²¿
+	// ç»˜åˆ¶åœ†æŸ±ä½“çš„é¡¶éƒ¨
 	glBegin(GL_POLYGON);
 	for (int i = 0; i < slices; ++i) {
 		glVertex3f(radius * cos(i * step), halfHeight, radius * sin(i * step));
 	}
 	glEnd();
 
-	// »æÖÆÔ²ÖùÌåµÄµ×²¿
+	// ç»˜åˆ¶åœ†æŸ±ä½“çš„åº•éƒ¨
 	glBegin(GL_POLYGON);
 	for (int i = 0; i < slices; ++i) {
 		glVertex3f(radius * cos(i * step), -halfHeight, radius * sin(i * step));
@@ -220,25 +226,25 @@ void glutSolidCylinder(float radius, float height, int slices, int stacks) {
 	glEnd();
 }
 void mouse(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        // »ñÈ¡Êó±êµã»÷Î»ÖÃµÄÆÁÄ»×ø±ê
+    /*if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        // è·å–é¼ æ ‡ç‚¹å‡»ä½ç½®çš„å±å¹•åæ ‡
         int viewport[4];
         glGetIntegerv(GL_VIEWPORT, viewport);
         int winWidth = viewport[2];
         int winHeight = viewport[3];
-        // ½«Êó±ê×ø±ê×ª»»Îª NDC ×ø±ê
+        // å°†é¼ æ ‡åæ ‡è½¬æ¢ä¸º NDC åæ ‡
         float ndcX = (2.0f * x) / winWidth - 1.0f;
         float ndcY = 1.0f - (2.0f * y) / winHeight;
-        // ´ÓÉî¶È»º³åÇø¶ÁÈ¡ Z Öµ
+        // ä»æ·±åº¦ç¼“å†²åŒºè¯»å– Z å€¼
         float z, h;
         glReadPixels(x, winHeight - y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &z);
         glReadPixels(7.0f, winHeight - 7.0f, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &h);
-        // ½« NDC ×ø±ê×ª»»ÎªÊÀ½ç×ø±ê
-        CVector rayOrigin(7 * 2 / winWidth - 1.0f, 1 - (2.0f * 7) / winHeight, h); // ÉãÏñ»úÎ»ÖÃ
+        // å°† NDC åæ ‡è½¬æ¢ä¸ºä¸–ç•Œåæ ‡
+        CVector rayOrigin(7 * 2 / winWidth - 1.0f, 1 - (2.0f * 7) / winHeight, h); // æ‘„åƒæœºä½ç½®
         CVector rayDirection(ndcX, ndcY, z);
         rayDirection.Normalize();
 
-        // ¼ì²âÉäÏßÓëÃ¿¸öĞĞĞÇµÄ½»µã
+        // æ£€æµ‹å°„çº¿ä¸æ¯ä¸ªè¡Œæ˜Ÿçš„äº¤ç‚¹
         float closestT = std::numeric_limits<float>::max();
         int closestPlanet = -1;
         for (size_t i = 0; i < planets.size(); ++i) {
@@ -251,56 +257,89 @@ void mouse(int button, int state, int x, int y) {
             }
         }
 
-        // ¸üĞÂÑ¡ÖĞµÄĞĞĞÇ
+        // æ›´æ–°é€‰ä¸­çš„è¡Œæ˜Ÿ
         selectedPlanet = closestPlanet;
     }
-    glutPostRedisplay();
+    glutPostRedisplay();*/
 }
+int LoadGLTextureFromFile(const char* filepath)
+{
+	CImage img;
+	HRESULT hResult = img.Load(filepath);
+	if (FAILED(hResult))
+	{
+		printf("Failed to load image: %s\n", filepath);
+		return 0;
+	}
+
+	glGenTextures(1, &texture[0]);            // åˆ›å»ºçº¹ç†
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+	int pitch = img.GetPitch();
+	if (pitch < 0)
+		gluBuild2DMipmaps(GL_TEXTURE_2D, img.GetBPP() / 8, img.GetWidth(), img.GetHeight(), GL_BGR, GL_UNSIGNED_BYTE, img.GetPixelAddress(0, img.GetHeight() - 1));
+	else
+		gluBuild2DMipmaps(GL_TEXTURE_2D, img.GetBPP() / 8, img.GetWidth(), img.GetHeight(), GL_BGR, GL_UNSIGNED_BYTE, img.GetBits());
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	float col[4] = { 1, 1, 1, 1 };
+	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, col);
+
+	return 1;  // åŠ è½½æˆåŠŸ
+}
+
+
 void DrawAstronaut() {
 	glPushMatrix();
-	glTranslatef(spaceship.position.x, spaceship.position.y, spaceship.position.z); // Ëæ·É´¬ÒÆ¶¯
-	glTranslatef(astronaut.position.x, astronaut.position.y, astronaut.position.z); // Ïà¶ÔÎ»ÖÃ
+	glTranslatef(spaceship.position.x, spaceship.position.y, spaceship.position.z); // éšé£èˆ¹ç§»åŠ¨
+	glTranslatef(astronaut.position.x, astronaut.position.y, astronaut.position.z); // ç›¸å¯¹ä½ç½®
 
-	// Í·²¿£¨»ÆÉ«£©
+	// å¤´éƒ¨ï¼ˆé»„è‰²ï¼‰
 	glPushMatrix();
-	glColor3f(1.0, 1.0, 0.0); // »ÆÉ«
+	glColor3f(1.0, 1.0, 0.0); // é»„è‰²
 	glTranslatef(0, 0.5, 0);
 	glutSolidSphere(0.2, 20, 20);
 	glPopMatrix();
 
-	// ÉíÌå£¨ºìÉ«£©
+	// èº«ä½“ï¼ˆçº¢è‰²ï¼‰
 	glPushMatrix();
-	glColor3f(1.0, 0.0, 0.0); // ºìÉ«
+	glColor3f(1.0, 0.0, 0.0); // çº¢è‰²
 	glTranslatef(0, 0, 0);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	// ×óÍÈ£¨À¶É«£©
+	// å·¦è…¿ï¼ˆè“è‰²ï¼‰
 	glPushMatrix();
-	glColor3f(0.0, 0.0, 1.0); // À¶É«
+	glColor3f(0.0, 0.0, 1.0); // è“è‰²
 	glTranslatef(-0.1, -0.25, 0);
 	glRotatef(astronaut.step, 1, 0, 0);
 	glutSolidCylinder(0.1, 0.5, 20, 20);
 	glPopMatrix();
 
-	// ÓÒÍÈ£¨À¶É«£©
+	// å³è…¿ï¼ˆè“è‰²ï¼‰
 	glPushMatrix();
-	glColor3f(0.0, 0.0, 1.0); // À¶É«
+	glColor3f(0.0, 0.0, 1.0); // è“è‰²
 	glTranslatef(0.1, -0.25, 0);
 	glRotatef(-astronaut.step, 1, 0, 0);
 	glutSolidCylinder(0.1, 0.5, 20, 20);
 	glPopMatrix();
 
-	// ×ó±Û£¨ÂÌÉ«£©
+	// å·¦è‡‚ï¼ˆç»¿è‰²ï¼‰
 	glPushMatrix();
-	glColor3f(0.0, 1.0, 0.0); // ÂÌÉ«
+	glColor3f(0.0, 1.0, 0.0); // ç»¿è‰²
 	glTranslatef(-0.25, 0.25, 0);
 	glutSolidCylinder(0.1, 0.5, 20, 20);
 	glPopMatrix();
 
-	// ÓÒ±Û£¨ÂÌÉ«£©
+	// å³è‡‚ï¼ˆç»¿è‰²ï¼‰
 	glPushMatrix();
-	glColor3f(0.0, 1.0, 0.0); // ÂÌÉ«
+	glColor3f(0.0, 1.0, 0.0); // ç»¿è‰²
 	glTranslatef(0.25, 0.25, 0);
 	glutSolidCylinder(0.1, 0.5, 20, 20);
 	glPopMatrix();
@@ -313,117 +352,143 @@ void DrawShip() {
 	glRotatef(spaceship.angleX, 1, 0, 0);
 	glRotatef(spaceship.angleY, 0, 1, 0);
 
-	// ·É´¬Í·²¿
+	// é£èˆ¹å¤´éƒ¨
 	glPushMatrix();
-	glColor3f(1.0, 0.0, 0.0); // ºìÉ«
+	glColor3f(1.0, 0.0, 0.0); // çº¢è‰²
 	glTranslatef(0, 0.5 * 5, 0);
 	glutSolidSphere(0.3 * 5, 20, 20);
 	glPopMatrix();
 
-	// ·É´¬»ú²Õ
+	// é£èˆ¹æœºèˆ±
 	glPushMatrix();
-	glColor3f(0.0, 1.0, 0.0); // ÂÌÉ«
+	glColor3f(0.0, 1.0, 0.0); // ç»¿è‰²
 	glTranslatef(0, 0, 0);
-	glutSolidCube(1.5 * 5); // »ú²Õ³ß´ç
+	glutSolidCube(1.5 * 5); // æœºèˆ±å°ºå¯¸
 	glPopMatrix();
 
-	// ×ó²à»úÒí£¨Ïò×óÑÓÉì£©
+	// å·¦ä¾§æœºç¿¼ï¼ˆå‘å·¦å»¶ä¼¸ï¼‰
 	glPushMatrix();
-	glColor3f(1.0, 1.0, 0.0); // »ÆÉ«
-	// ¸ù²¿Î»ÓÚ»ú²Õ×ó²à±ßÔµÍâ£¨»ú²Õ¿í¶È1.5*5£¬ÖĞĞÄÔÚ0£¬×ó²à±ßÔµ-0.75*5£¬ÏòÍâÑÓÉì0.1£©
+	glColor3f(1.0, 1.0, 0.0); // é»„è‰²
+	// æ ¹éƒ¨ä½äºæœºèˆ±å·¦ä¾§è¾¹ç¼˜å¤–ï¼ˆæœºèˆ±å®½åº¦1.5*5ï¼Œä¸­å¿ƒåœ¨0ï¼Œå·¦ä¾§è¾¹ç¼˜-0.75*5ï¼Œå‘å¤–å»¶ä¼¸0.1ï¼‰
 	glTranslatef(-0.75 * 5 - 0.1, 0, 0);
 
 	glBegin(GL_TRIANGLES);
 	{
-		// ¶¥²¿¶¥µã£º¸ù²¿Î»ÖÃÉÏ·½
+		// é¡¶éƒ¨é¡¶ç‚¹ï¼šæ ¹éƒ¨ä½ç½®ä¸Šæ–¹
 		glVertex3f(0, 0.25 * 5, 0);
-		// µ×²¿¶¥µã£º¸ù²¿Î»ÖÃÏÂ·½
+		// åº•éƒ¨é¡¶ç‚¹ï¼šæ ¹éƒ¨ä½ç½®ä¸‹æ–¹
 		glVertex3f(0, -0.25 * 5, 0);
-		// ¼â¶Ë¶¥µã£ºÏò×óÑÓÉì1.5*5£¨È·±£ÔÚ»ú²ÕÍâ²¿£©
+		// å°–ç«¯é¡¶ç‚¹ï¼šå‘å·¦å»¶ä¼¸1.5*5ï¼ˆç¡®ä¿åœ¨æœºèˆ±å¤–éƒ¨ï¼‰
 		glVertex3f(-1.5 * 5, 0, 0);
 	}
 	glEnd();
 	glPopMatrix();
 
-	// ÓÒ²à»úÒí£¨ÏòÓÒÑÓÉì£©
+	// å³ä¾§æœºç¿¼ï¼ˆå‘å³å»¶ä¼¸ï¼‰
 	glPushMatrix();
-	glColor3f(1.0, 1.0, 0.0); // »ÆÉ«
-	// ¸ù²¿Î»ÓÚ»ú²ÕÓÒ²à±ßÔµÍâ£¨ÓÒ²à±ßÔµ0.75*5£¬ÏòÍâÑÓÉì0.1£©
+	glColor3f(1.0, 1.0, 0.0); // é»„è‰²
+	// æ ¹éƒ¨ä½äºæœºèˆ±å³ä¾§è¾¹ç¼˜å¤–ï¼ˆå³ä¾§è¾¹ç¼˜0.75*5ï¼Œå‘å¤–å»¶ä¼¸0.1ï¼‰
 	glTranslatef(0.75 * 5 + 0.1, 0, 0);
 
 	glBegin(GL_TRIANGLES);
 	{
-		// ¶¥²¿¶¥µã£º¸ù²¿Î»ÖÃÉÏ·½
+		// é¡¶éƒ¨é¡¶ç‚¹ï¼šæ ¹éƒ¨ä½ç½®ä¸Šæ–¹
 		glVertex3f(0, 0.25 * 5, 0);
-		// µ×²¿¶¥µã£º¸ù²¿Î»ÖÃÏÂ·½
+		// åº•éƒ¨é¡¶ç‚¹ï¼šæ ¹éƒ¨ä½ç½®ä¸‹æ–¹
 		glVertex3f(0, -0.25 * 5, 0);
-		// ¼â¶Ë¶¥µã£ºÏòÓÒÑÓÉì1.5*5£¨È·±£ÔÚ»ú²ÕÍâ²¿£©
+		// å°–ç«¯é¡¶ç‚¹ï¼šå‘å³å»¶ä¼¸1.5*5ï¼ˆç¡®ä¿åœ¨æœºèˆ±å¤–éƒ¨ï¼‰
 		glVertex3f(1.5 * 5, 0, 0);
 	}
 	glEnd();
 	glPopMatrix();
 
-	// ·É´¬±³Ãæ£¨Ïß¿òÄ£Ê½£©
+	// é£èˆ¹èƒŒé¢ï¼ˆçº¿æ¡†æ¨¡å¼ï¼‰
 	glPushMatrix();
 	glTranslatef(0, 0, 0);
-	glRotatef(180, 0, 1, 0); // Ğı×ªµ½±³Ãæ
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // ÉèÖÃÏß¿òÄ£Ê½
-	glutSolidCube(1.5 * 5); // Í¬Ñù³ß´çµÄÁ¢·½Ìå
+	glRotatef(180, 0, 1, 0); // æ—‹è½¬åˆ°èƒŒé¢
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // è®¾ç½®çº¿æ¡†æ¨¡å¼
+	glutSolidCube(1.5 * 5); // åŒæ ·å°ºå¯¸çš„ç«‹æ–¹ä½“
 	glPopMatrix();
 
 	glPopMatrix();
 }
 void DrawPlanets() {
-    for (size_t i = 0; i < planets.size(); ++i) {
-        // »æÖÆ¹ìµÀ
-        glPushMatrix();
-        glColor3f(0.5, 0.5, 0.5); // ¹ìµÀÑÕÉ«ÉèÖÃÎª»ÒÉ«
-        glBegin(GL_LINE_LOOP);
-        for (float angle = 0; angle < 2 * 3.1415926; angle += 0.01) {
-            glVertex3f(planets[i].orbitRadius * cos(angle), 0, planets[i].orbitRadius * sin(angle));
-        }
-        glEnd();
-        glPopMatrix();
+	for (size_t i = 0; i < planets.size(); ++i) {
+		// ç»˜åˆ¶è½¨é“
+		glPushMatrix();
+		glColor3f(0.5, 0.5, 0.5); // è½¨é“é¢œè‰²è®¾ç½®ä¸ºç°è‰²
+		glBegin(GL_LINE_LOOP);
+		for (float angle = 0; angle < 2 * 3.1415926; angle += 0.01f) {
+			glVertex3f(planets[i].orbitRadius * cos(angle), 0, planets[i].orbitRadius * sin(angle));
+		}
+		glEnd();
+		glPopMatrix();
 
-        // ¼ÆËãĞĞĞÇµÄµ±Ç°Î»ÖÃ
-        planets[i].position = CVector(
-            planets[i].orbitRadius * cos(planets[i].angle),
-            0,
-            planets[i].orbitRadius * sin(planets[i].angle)
-        );
+		// è®¡ç®—è¡Œæ˜Ÿçš„å½“å‰ä½ç½®
+		planets[i].position = CVector(
+			planets[i].orbitRadius * cos(planets[i].angle),
+			0,
+			planets[i].orbitRadius * sin(planets[i].angle)
+		);
 
-        // »æÖÆĞĞĞÇ
-        glPushMatrix();
-        glTranslatef(planets[i].position.x, planets[i].position.y, planets[i].position.z);
-        glRotatef(planets[i].angle, 0, 1, 0); // ×Ô×ª
-        if (wireframeMode) {
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        }
-        else {
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-        }
-        glColor3fv(planets[i].color); // Ê¹ÓÃĞĞĞÇµÄÑÕÉ«
-        glutSolidSphere(planets[i].radius, 20, 20);
-        glPopMatrix();
-    }
+		// ç»˜åˆ¶è¡Œæ˜Ÿ
+		glPushMatrix();
+		glTranslatef(planets[i].position.x, planets[i].position.y, planets[i].position.z);
+		glRotatef(planets[i].angle, 0, 1, 0); // è‡ªè½¬
+
+		if (wireframeMode) {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		}
+		else {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		}
+
+		// å¯ç”¨å¹¶ç»‘å®šçº¹ç†ï¼ˆä»…åœ¨éçº¿æ¡†æ¨¡å¼ä¸‹ï¼‰
+		if (!wireframeMode && planets[i].textureID != 0) {
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, planets[i].textureID);
+		}
+
+		// è®¾ç½®é¢œè‰²ï¼ˆä»…åœ¨æ²¡è´´å›¾æ—¶å¯è§ï¼‰
+		glColor3fv(planets[i].color);
+
+		// ä½¿ç”¨ gluSphere ç»˜åˆ¶å¸¦çº¹ç†çƒä½“
+		GLUquadric* quad = gluNewQuadric();
+		gluQuadricTexture(quad, GL_TRUE);
+		gluQuadricNormals(quad, GLU_SMOOTH);
+		gluSphere(quad, planets[i].radius, 30, 30);
+		gluDeleteQuadric(quad);
+
+		if (!wireframeMode && planets[i].textureID != 0) {
+			glDisable(GL_TEXTURE_2D);
+		}
+
+		glPopMatrix();
+	}
+
+	// åœŸæ˜Ÿç¯ç»˜åˆ¶ï¼ˆä¸åŠ çº¹ç†ï¼‰
 	if (!wireframeMode) {
 		glPushMatrix();
 		glTranslatef(planets[7].position.x, planets[7].position.y, planets[7].position.z);
-		glColor3f(1.0, 1.0, 0.0); // ÍÁĞÇ»·µÄÑÕÉ«
-		glutSolidTorus(0.1 * 7, 0.5 * 7, 20, 20); // ĞÇ»·ÄÚ°ë¾¶ºÍÍâ°ë¾¶¶¼À©´ó5±¶
+		glColor3f(1.0, 1.0, 0.0); // åœŸæ˜Ÿç¯é¢œè‰²
+		glutSolidTorus(0.1f * 7, 0.5f * 7, 20, 20);
 		glPopMatrix();
 	}
-    // »æÖÆÑ¡ÖĞµÄĞĞĞÇµÄÏß¿òÇò
-    if (selectedPlanet != -1) {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        glPushMatrix();
-        glTranslatef(planets[selectedPlanet].position.x, planets[selectedPlanet].position.y, planets[selectedPlanet].position.z);
-        glColor3f(1.0, 1.0, 1.0);
-        glutSolidSphere(planets[selectedPlanet].radius, 20, 20);
-        glPopMatrix();
-        glPolygonMode(GL_FRONT_AND_BACK, wireframeMode ? GL_LINE : GL_FILL);
-    }
+
+	// ç»˜åˆ¶é€‰ä¸­è¡Œæ˜Ÿçº¿æ¡†è½®å»“
+	if (selectedPlanet != -1) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glPushMatrix();
+		glTranslatef(planets[selectedPlanet].position.x, planets[selectedPlanet].position.y, planets[selectedPlanet].position.z);
+		glColor3f(1.0, 1.0, 1.0);
+		glutSolidSphere(planets[selectedPlanet].radius, 20, 20);
+		glPopMatrix();
+
+		// æ¢å¤ç»˜åˆ¶æ¨¡å¼
+		glPolygonMode(GL_FRONT_AND_BACK, wireframeMode ? GL_LINE : GL_FILL);
+	}
 }
+
 void draw()
 {
     glPushMatrix();
@@ -431,17 +496,17 @@ void draw()
     DrawStars();
     glPopMatrix();
 
-    // »æÖÆĞĞĞÇ
+    // ç»˜åˆ¶è¡Œæ˜Ÿ
     glPushMatrix();
     DrawPlanets();
     glPopMatrix();
 
-    // »æÖÆ·É´¬
+    // ç»˜åˆ¶é£èˆ¹
     glPushMatrix();
     DrawShip();
     glPopMatrix();
 
-	// ĞÂÔö»æÖÆÌ«¿ÕÈË
+	// æ–°å¢ç»˜åˆ¶å¤ªç©ºäºº
 	glPushMatrix();
 	DrawAstronaut();
 	glPopMatrix();
@@ -449,28 +514,28 @@ void draw()
 void myDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //glLoadIdentity();  // ÖØÖÃÄ£ĞÍÊÓÍ¼¾ØÕó
-    /*gluLookAt(7.0, 7.0, 7.0,  // ÉãÏñ»úÎ»ÖÃ
-        0.0, 0.0, 0.0,  // ¹Û²ìÄ¿±êµã
-        0.0, 1.0, 0.0); // ÉÏ·½Ïò*/
+    //glLoadIdentity();  // é‡ç½®æ¨¡å‹è§†å›¾çŸ©é˜µ
+    /*gluLookAt(7.0, 7.0, 7.0,  // æ‘„åƒæœºä½ç½®
+        0.0, 0.0, 0.0,  // è§‚å¯Ÿç›®æ ‡ç‚¹
+        0.0, 1.0, 0.0); // ä¸Šæ–¹å‘*/
 	if (isInterpolating) {
-		// ¼ÆËã²åÖµ½ø¶È
+		// è®¡ç®—æ’å€¼è¿›åº¦
 		float t = (float)interpolationFrame / interpolationTotalFrames;
 
-		// ²åÖµ¼ÆËãÊÓµãÎ»ÖÃ
+		// æ’å€¼è®¡ç®—è§†ç‚¹ä½ç½®
 		mx = initialPosition.x + (targetPosition.x - initialPosition.x) * t;
 		my = initialPosition.y + (targetPosition.y - initialPosition.y) * t;
 		mz = initialPosition.z + (targetPosition.z - initialPosition.z) * t;
 
-		// Ê¹ÓÃËÄÔªÊı²åÖµ¼ÆËãµ±Ç°Ğı×ª
+		// ä½¿ç”¨å››å…ƒæ•°æ’å€¼è®¡ç®—å½“å‰æ—‹è½¬
 		currentQuat = initialQuat.Slerp(targetQuat, t);
 
-		// ¸üĞÂ²åÖµÖ¡Êı
+		// æ›´æ–°æ’å€¼å¸§æ•°
 		interpolationFrame++;
 		if (interpolationFrame >= interpolationTotalFrames) {
-			// ²åÖµÍê³É
+			// æ’å€¼å®Œæˆ
 			isInterpolating = false;
-			isAstronautView = !isAstronautView; // ÇĞ»»ÊÓµãÄ£Ê½
+			isAstronautView = !isAstronautView; // åˆ‡æ¢è§†ç‚¹æ¨¡å¼
 		}
 	}
 
@@ -479,7 +544,7 @@ void myDisplay(void)
 	{
 		if (isAstronautView)
 		{
-			//ÔË¶¯
+			//è¿åŠ¨
 			astronaut.position.z += cos(astronaut.angle * 3.1415 / 180.0) * mspeed;
 			astronaut.position.x += sin(astronaut.angle * 3.1415 / 180.0) * mspeed;
 			astronaut.position.x = clamp(astronaut.position.x, -0.75f, 0.75f);
@@ -506,7 +571,7 @@ void myDisplay(void)
 	{
 		if (isAstronautView)
 		{
-			//ÔË¶¯
+			//è¿åŠ¨
 			astronaut.position.z -= cos(astronaut.angle * 3.1415 / 180.0) * mspeed;
 			astronaut.position.x -= sin(astronaut.angle * 3.1415 / 180.0) * mspeed;
 			astronaut.position.x = clamp(astronaut.position.x, -0.75f, 0.75f);
@@ -533,7 +598,7 @@ void myDisplay(void)
 	{
 		if (isAstronautView)
 		{
-			//ÔË¶¯
+			//è¿åŠ¨
 			astronaut.angle += rspeed;
 			astronaut.position.x = clamp(astronaut.position.x, -0.75f, 0.75f);
 			astronaut.position.y = clamp(astronaut.position.y, -0.75f, 0.75f);
@@ -559,7 +624,7 @@ void myDisplay(void)
 	{
 		if (isAstronautView)
 		{
-			//ÔË¶¯
+			//è¿åŠ¨
 			astronaut.angle -= rspeed;
 			astronaut.position.x = clamp(astronaut.position.x, -0.75f, 0.75f);
 			astronaut.position.y = clamp(astronaut.position.y, -0.75f, 0.75f);
@@ -736,7 +801,7 @@ void myDisplay(void)
 		}
 		printf("mode:%d\n", mode);
 	}
-	if (bChange)//¼ÆËãÊÓµã¾ØÕóµÄÄæ¾ØÕó
+	if (bChange)//è®¡ç®—è§†ç‚¹çŸ©é˜µçš„é€†çŸ©é˜µ
 	{
 		glPushMatrix();
 		glLoadIdentity();
@@ -746,7 +811,7 @@ void myDisplay(void)
 		glGetFloatv(GL_MODELVIEW_MATRIX, g_IEyeMat);
 		glPopMatrix();
 	}
-	glutPostRedisplay(); // ÖØĞÂ»æÖÆ´°¿Ú
+	glutPostRedisplay(); // é‡æ–°ç»˜åˆ¶çª—å£
     glPushMatrix();
     SetView();
     draw();
@@ -754,13 +819,13 @@ void myDisplay(void)
     glutSwapBuffers();
 }
 void DrawStars() {
-    glColor3f(1.0f, 1.0f, 1.0f); // ÉèÖÃĞÇĞÇÑÕÉ«Îª°×É«
-    glPointSize(2.0f); // ÉèÖÃĞÇĞÇ´óĞ¡
+    glColor3f(1.0f, 1.0f, 1.0f); // è®¾ç½®æ˜Ÿæ˜Ÿé¢œè‰²ä¸ºç™½è‰²
+    glPointSize(2.0f); // è®¾ç½®æ˜Ÿæ˜Ÿå¤§å°
     glBegin(GL_POINTS);
     for (int i = 0; i < 100; ++i) {
-        float brightness = sin(t + i) * 0.5f + 0.5f; // ¼ÆËãĞÇĞÇÁÁ¶È
-        glColor3f(brightness, brightness, brightness); // ÉèÖÃĞÇĞÇÁÁ¶È
-        glVertex3fv(stars[i]); // »æÖÆĞÇĞÇ
+        float brightness = sin(t + i) * 0.5f + 0.5f; // è®¡ç®—æ˜Ÿæ˜Ÿäº®åº¦
+        glColor3f(brightness, brightness, brightness); // è®¾ç½®æ˜Ÿæ˜Ÿäº®åº¦
+        glVertex3fv(stars[i]); // ç»˜åˆ¶æ˜Ÿæ˜Ÿ
     }
     glEnd();
 }
@@ -774,21 +839,21 @@ void myReshape(int w, int h)
     glLoadIdentity();
 }
 void myKeyboard(unsigned char key, int x, int y) {
-	keyState[key] = true; // ÉèÖÃ°´¼ü×´Ì¬Îª°´ÏÂ
-	if (key == 'c' || key == 'C') { // °´ÏÂ C ¼üÇĞ»»ÊÓµãÄ£Ê½
+	keyState[key] = true; // è®¾ç½®æŒ‰é”®çŠ¶æ€ä¸ºæŒ‰ä¸‹
+	if (key == 'c' || key == 'C') { // æŒ‰ä¸‹ C é”®åˆ‡æ¢è§†ç‚¹æ¨¡å¼
 		if (!isInterpolating) {
 			isInterpolating = true;
 			interpolationFrame = 0;
 
-			// ´æ´¢³õÊ¼×´Ì¬
+			// å­˜å‚¨åˆå§‹çŠ¶æ€
 			initialPosition = CVector(mx, my, mz);
 			initialQuat = CQuaternion(cos(rx * PI / 360),
 				sin(rx * PI / 360) * sin(ry * PI / 360),
 				sin(rx * PI / 360) * cos(ry * PI / 360),
-				0); // ³õÊ¼»¯ËÄÔªÊı
+				0); // åˆå§‹åŒ–å››å…ƒæ•°
 
 			if (isAstronautView) {
-				// ´æ´¢Ä¿±ê×´Ì¬ÎªÉÏµÛÊÓ½Ç
+				// å­˜å‚¨ç›®æ ‡çŠ¶æ€ä¸ºä¸Šå¸è§†è§’
 				targetPosition = CVector(godView_mx, godView_my, godView_mz);
 				targetQuat = CQuaternion(cos(godView_rx * PI / 360),
 					sin(godView_rx * PI / 360) * sin(godView_ry * PI / 360),
@@ -796,9 +861,9 @@ void myKeyboard(unsigned char key, int x, int y) {
 					0);
 			}
 			else {
-				// ´æ´¢Ä¿±ê×´Ì¬ÎªÓîº½Ô±ÊÓ½Ç
+				// å­˜å‚¨ç›®æ ‡çŠ¶æ€ä¸ºå®‡èˆªå‘˜è§†è§’
 				targetPosition = CVector(spaceship.position.x, spaceship.position.y + 0.5f, spaceship.position.z - 1.0f);
-				// Ê¹ÓÃËÄÔªÊı±íÊ¾³¯Ïò·É´¬µÄĞı×ª
+				// ä½¿ç”¨å››å…ƒæ•°è¡¨ç¤ºæœå‘é£èˆ¹çš„æ—‹è½¬
 				targetQuat = CQuaternion(cos(-90 * PI / 360),
 					sin(-90 * PI / 360) * sin(spaceship.angleY * PI / 360),
 					sin(-90 * PI / 360) * cos(spaceship.angleY * PI / 360),
@@ -807,12 +872,12 @@ void myKeyboard(unsigned char key, int x, int y) {
 		}
 	}
 
-    glutPostRedisplay(); // ÇëÇóÖØĞÂ»æÖÆ´°¿Ú
-    /*if (key == ' ') { // Èç¹û°´ÏÂ¿Õ¸ñ¼ü
+    glutPostRedisplay(); // è¯·æ±‚é‡æ–°ç»˜åˆ¶çª—å£
+    /*if (key == ' ') { // å¦‚æœæŒ‰ä¸‹ç©ºæ ¼é”®
 
-        t = 0; // ÖØÖÃÊ±¼ä±äÁ¿
+        t = 0; // é‡ç½®æ—¶é—´å˜é‡
         for (int i = 0; i < 100; ++i) {
-            stars[i].Set(rand() % 40 - 20, rand() % 40 - 20, rand() % 40 - 20, 1); // ÖØĞÂÉú³ÉËæ»úĞÇĞÇÎ»ÖÃ
+            stars[i].Set(rand() % 40 - 20, rand() % 40 - 20, rand() % 40 - 20, 1); // é‡æ–°ç”Ÿæˆéšæœºæ˜Ÿæ˜Ÿä½ç½®
         }
     }
 	printf("%c Down\n", key);
@@ -1057,7 +1122,7 @@ void myKeyboard(unsigned char key, int x, int y) {
 		printf("mspeed:%.1f\n", mspeed);
 		break;
 	}
-	if (bChange)//¼ÆËãÊÓµã¾ØÕóµÄÄæ¾ØÕó
+	if (bChange)//è®¡ç®—è§†ç‚¹çŸ©é˜µçš„é€†çŸ©é˜µ
 	{
 		glPushMatrix();
 		glLoadIdentity();
@@ -1071,36 +1136,36 @@ void myKeyboard(unsigned char key, int x, int y) {
 	
 }
 void mySpecialKeyboard(int key, int x, int y) {
-    if (key == GLUT_KEY_F1) { // °´ÏÂ F1 ¼ü
-        // ÇĞ»»Ìî³äÄ£Ê½ºÍÏß¿òÄ£Ê½
+    if (key == GLUT_KEY_F1) { // æŒ‰ä¸‹ F1 é”®
+        // åˆ‡æ¢å¡«å……æ¨¡å¼å’Œçº¿æ¡†æ¨¡å¼
         wireframeMode = !wireframeMode;
     }
-    glutPostRedisplay(); // ÖØĞÂ»æÖÆ´°¿Ú
+    glutPostRedisplay(); // é‡æ–°ç»˜åˆ¶çª—å£
 }
 void KeyUp(unsigned char key, int x, int y) {
-	keyState[key] = false; // ÉèÖÃ°´¼ü×´Ì¬ÎªÎ´°´ÏÂ
-	glutPostRedisplay(); // ÇëÇóÖØĞÂ»æÖÆ´°¿Ú
+	keyState[key] = false; // è®¾ç½®æŒ‰é”®çŠ¶æ€ä¸ºæœªæŒ‰ä¸‹
+	glutPostRedisplay(); // è¯·æ±‚é‡æ–°ç»˜åˆ¶çª—å£
 }
 int main(int argc, char* argv[])
 {
     Calculate2();
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    srand((unsigned int)time(NULL)); // ³õÊ¼»¯Ëæ»úÊıÖÖ×Ó
+    srand((unsigned int)time(NULL)); // åˆå§‹åŒ–éšæœºæ•°ç§å­
 
     for (int i = 0; i < 100; ++i) {
         stars[i].Set(rand() % 40 - 20, rand() % 40 - 20, rand() % 40 - 20, 1);
         starBrightness[i] = rand() % 100 / 100.0f;
-    }// ³õÊ¼»¯ĞÇĞÇµÄÎ»ÖÃ
+    }// åˆå§‹åŒ–æ˜Ÿæ˜Ÿçš„ä½ç½®
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(1024, 768);
-    glutCreateWindow("Í¼ĞÎÑ§×÷Òµ4");
+    glutCreateWindow("å›¾å½¢å­¦ä½œä¸š4");
     glutDisplayFunc(&myDisplay);
     glutTimerFunc(33, myTimerFunc, 0);
     glutReshapeFunc(&myReshape);
     glutKeyboardFunc(&myKeyboard);
     glutMouseFunc(&mouse);
-    glutSpecialFunc(mySpecialKeyboard); // ×¢²áÌØÊâ¼ü»Øµ÷º¯Êı
+    glutSpecialFunc(mySpecialKeyboard); // æ³¨å†Œç‰¹æ®Šé”®å›è°ƒå‡½æ•°
     glutKeyboardUpFunc(&KeyUp);
     SetRC();
     glutMainLoop();
